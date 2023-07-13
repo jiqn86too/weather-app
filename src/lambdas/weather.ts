@@ -15,7 +15,7 @@ export const getWeather: APIGatewayProxyHandler = async (_event: APIGatewayProxy
             } else {
                 return {
                     statusCode: 404,
-                    body: `There are no records for ${cityName}`
+                    body: `There are no records for: ${cityName}`
                 };
 
             }
