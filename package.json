@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "sam build --template template.yaml --manifest ./app/package.json --use-container"
+    "build": "sam build --template template.yaml --manifest ./package.json --use-container"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.92",

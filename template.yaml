@@ -9,7 +9,7 @@ Resources:
         'Fn::Transform':
           Name: AWS::Include
           Parameters:
-            Location: ./app/src/openapi/openapi.yaml
+            Location: ./src/openapi/openapi.yaml
   CommentsBucket:
     Type: AWS::S3::Bucket
 
@@ -25,7 +25,7 @@ Resources:
             - "*"
           AllowHeaders: 
             - "*"
-      CodeUri: ./app/src/lambdas
+      CodeUri: ./src/lambdas
       Events:
         Api:
           Type: HttpApi
