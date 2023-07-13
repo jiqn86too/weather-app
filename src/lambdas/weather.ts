@@ -6,7 +6,7 @@ export const getWeather: APIGatewayProxyHandler = async (_event: APIGatewayProxy
     if (cityName && cityName !== '') {
         try {
             const currentWeather = findCity(cityName)
-            if (currentWeather[0]) {
+            if (currentWeather && currentWeather[0]) {
                 const cityWeather = getWeatherWithAverage(currentWeather[0])
                 return {
                     statusCode: 200,
