@@ -1,0 +1,20 @@
+version = 0.1
+[dev.deploy.parameters]
+stack_name = "weather-app"
+resolve_s3 = true
+s3_prefix = "weather-app"
+region = "us-east-2"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+disable_rollback = true
+image_repositories = []
+
+[development.deploy.parameters]
+stack_name = "weather-app"
+resolve_s3 = true
+s3_prefix = "weather-app"
+region = "us-east-2"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+disable_rollback = true
+image_repositories = []

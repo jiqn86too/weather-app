@@ -1,0 +1,110 @@
+openapi: 3.0.0
+servers:
+  - description: 'Local Server fro testing'
+    url: http://localhost:3000
+info:
+  title: Wheater API for Rindus and C&A
+  version: 1.0.0
+  description: Hopefully you guys love this API
+  contact:
+    email: jiqn86@gmail.com
+  license:
+    name: Apache 2.0
+    url: "https://www.apache.org/license/LICENSE-2.0.html"
+tags:
+  - name: Weather
+    description: This is the only get route to get current weather
+
+paths:
+  /weather:
+    get:
+      operationId: getCityWeather
+      parameters:
+        - name: cityName
+          in: query
+          required: true
+          schema:
+            type: string
+      tags:
+        - "Weather"
+      summary: City Weather
+      description: Get the weather for a particular city
+      responses:
+        "200":
+          $ref: "#/components/responses/CityWeather"
+        default:
+          $ref: "#/components/responses/DefaultError"
+
+components:
+  responses:
+    DefaultError:
+      description: Default Error Response
+      content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultError"
+
+    CityWeather:
+      description: The forecast for a city
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/CityWeather"
+  schemas:
+    DefaultError:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: object
+          required:
+            - message
+          properties:
+            message:
+              type: string
+              example: "There was an error"
+            code:
+              type: string
+              example: ERR-NF
+
+    CityWeather:
+      type: object
+      properties:
+        name:
+          type: string
+        currentTemperature:
+          type: number
+        averageTemp:
+          type: number
+        temperatureUnit:
+          type: string
+        forecast:
+          $ref: "#/components/schemas/Forecast"
+    
+    Forecast:
+      type: object
+      properties:
+        monday:
+          $ref: "#/components/schemas/Day"
+        tuesday:
+          $ref: "#/components/schemas/Day"
+        wednesday:
+          $ref: "#/components/schemas/Day"
+        thursday:
+          $ref: "#/components/schemas/Day"
+        friday:
+          $ref: "#/components/schemas/Day"
+        saturday:
+          $ref: "#/components/schemas/Day"
+        sunday:
+          $ref: "#/components/schemas/Day"
+
+    Day:
+      type: object
+      properties:
+        temperature:
+          type: number
+        weather:
+          type: string
+        
