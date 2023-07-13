@@ -2,42 +2,42 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 
 Resources:
-  WeatherApi:
-    Type: AWS::Serverless::HttpApi
-    Properties:
-      DefinitionBody:
-        'Fn::Transform':
-          Name: AWS::Include
-          Parameters:
-            Location: ./src/openapi/openapi.yaml
-  CommentsBucket:
-    Type: AWS::S3::Bucket
+    WeatherApi:
+        Type: AWS::Serverless::HttpApi
+        Properties:
+            DefinitionBody:
+                'Fn::Transform':
+                    Name: AWS::Include
+                    Parameters:
+                        Location: ./src/openapi/openapi.yaml
+    CommentsBucket:
+        Type: AWS::S3::Bucket
 
-  getCityWeather:
-    Type: 'AWS::Serverless::Function'
-    Properties:
-      Handler: weather.getWeather
-      Runtime: nodejs18.x
-      FunctionUrlConfig:
-        AuthType: NONE
-        Cors:
-          AllowOrigins:
-            - "*"
-          AllowHeaders: 
-            - "*"
-      CodeUri: ./src/lambdas
-      Events:
-        Api:
-          Type: HttpApi
-          Properties: 
-            Path: /weather/{cityName}
-            Method: GET
-            ApiId: !Ref WeatherApi
-    Metadata:
-      BuildMethod: esbuild
-      BuildProperties:
-        Minify: true
-        Target: "es2020"
-        Sourcemap: true
-        EntryPoints:
-        - weather.ts
+    getCityWeather:
+        Type: 'AWS::Serverless::Function'
+        Properties:
+            Handler: weather.getWeather
+            Runtime: nodejs18.x
+            FunctionUrlConfig:
+                AuthType: NONE
+                Cors:
+                    AllowOrigins:
+                        - '*'
+                    AllowHeaders:
+                        - '*'
+            CodeUri: ./src/lambdas
+            Events:
+                Api:
+                    Type: HttpApi
+                    Properties:
+                        Path: /weather/{cityName}
+                        Method: GET
+                        ApiId: !Ref WeatherApi
+        Metadata:
+            BuildMethod: esbuild
+            BuildProperties:
+                Minify: true
+                Target: 'es2020'
+                Sourcemap: true
+                EntryPoints:
+                    - weather.ts

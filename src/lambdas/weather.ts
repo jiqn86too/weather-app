@@ -31,6 +31,3 @@ export const getWeather: APIGatewayProxyHandler = async (_event: APIGatewayProxy
         body: 'You need to provide a city'
     }
 }
-
-
-
