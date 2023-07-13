@@ -2,8 +2,8 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult, ClientContext, ClientConte
 import { getWeather } from "../../weather";
 import { context, proxyResult } from "../utils/weatherConsts";
 
-describe('Unit test for app handler', function () {
-    it('verifies successful response when city exists', async () => {
+describe('Unit test for getWeather function', function () {
+    it('should verifies successful response when city exists', async () => {
         const event: APIGatewayProxyEvent = {
             pathParameters: {
                 cityName: "malaga"
@@ -17,7 +17,7 @@ describe('Unit test for app handler', function () {
         expect(body.name).toEqual('malaga');
     });
 
-    it('verifies error response when city does not exist', async () => {
+    it('should verifies error response when city does not exist', async () => {
         const event: APIGatewayProxyEvent = {
             pathParameters: {
                 cityName: "maracay"
@@ -29,7 +29,7 @@ describe('Unit test for app handler', function () {
         expect(result.statusCode).toEqual(404);
     });
 
-    it('return error response when city is not provided', async () => {
+    it('should returns error response when city is not provided', async () => {
         const event: APIGatewayProxyEvent = {
             pathParameters: {}
         } as any;

@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "build": "sam build --template template.yaml --manifest ./package.json",
-        "lint": "eslint --fix",
+        "lint": "eslint",
         "test": "jest --config=jest.config.js"
     },
     "devDependencies": {

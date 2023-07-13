@@ -33,6 +33,13 @@ env:
     PROD_REGION: us-east-2
 
 jobs:
+    lint:
+      if: github.event_name == 'push'
+      runs-on: ubuntu-latest
+      steps:
+          - uses: actions/checkout@v3
+          - run: npm install && npm run lint
+
     test:
         if: github.event_name == 'push'
         runs-on: ubuntu-latest
