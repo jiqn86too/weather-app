@@ -117,7 +117,7 @@ jobs:
           use-installer: true
 
       - name: Build resources
-        run: npm run build
+        run: cd ./app && npm run build
 
       - name: Assume the testing pipeline user role
         uses: aws-actions/configure-aws-credentials@v1-node16
