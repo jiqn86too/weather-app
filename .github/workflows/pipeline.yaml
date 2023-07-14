@@ -57,14 +57,9 @@ jobs:
           with:
             command: cp
             source: ./src/openapi/
-            destination: ${TESTING_ARTIFACTS_BUCKET}/openapi
+            destination: s3://${TESTING_ARTIFACTS_BUCKET}/openapi
             aws_access_key_id: ${{ env.PIPELINE_USER_ACCESS_KEY_ID }}
             aws_secret_access_key: ${{ env.PIPELINE_USER_SECRET_ACCESS_KEY }}
-            aws-region: ${{ env.TESTING_REGION }}
-            role-to-assume: ${{ env.TESTING_PIPELINE_EXECUTION_ROLE }}
-            role-session-name: feature-deployment
-            role-duration-seconds: 3600
-            role-skip-session-tagging: true
 
     delete-feature:
         if: startsWith(github.event.ref, 'feature') && github.event_name == 'delete'
