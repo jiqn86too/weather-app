@@ -48,19 +48,6 @@ jobs:
           - uses: actions/checkout@v3
           - run: npm install && npm run test
 
-    docs:
-      if: github.event_name == 'push'
-      needs: [test]
-      runs-on: ubuntu-latest
-      steps:
-        - uses: keithweaver/aws-s3-github-action@v1.0.0
-          with:
-            command: cp
-            source: ./src/openapi/
-            destination: s3://${TESTING_ARTIFACTS_BUCKET}/openapi
-            aws_access_key_id: ${{ env.PIPELINE_USER_ACCESS_KEY_ID }}
-            aws_secret_access_key: ${{ env.PIPELINE_USER_SECRET_ACCESS_KEY }}
-
     delete-feature:
         if: startsWith(github.event.ref, 'feature') && github.event_name == 'delete'
         runs-on: ubuntu-latest
