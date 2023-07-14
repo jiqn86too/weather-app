@@ -48,6 +48,23 @@ jobs:
           - uses: actions/checkout@v3
           - run: npm install && npm run test
 
+    docs:
+      if: github.event_name == 'push'
+      needs: [lint]
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+          with:
+            aws-access-key-id: ${{ env.PIPELINE_USER_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ env.PIPELINE_USER_SECRET_ACCESS_KEY }}
+            aws-region: ${{ env.TESTING_REGION }}
+            role-to-assume: ${{ env.TESTING_PIPELINE_EXECUTION_ROLE }}
+            role-session-name: feature-deployment
+            role-duration-seconds: 3600
+            role-skip-session-tagging: true
+        - run: aws s3 mv ./src/openapi/index.html ${TESTING_ARTIFACTS_BUCKET}/index.html \
+               aws s3 mv ./src/openapi/openapi.json ${TESTING_ARTIFACTS_BUCKET}/openapi.html \
+
     delete-feature:
         if: startsWith(github.event.ref, 'feature') && github.event_name == 'delete'
         runs-on: ubuntu-latest
