@@ -5,9 +5,9 @@ export const getWeather: APIGatewayProxyHandler = async (_event: APIGatewayProxy
     const cityName = _event.pathParameters?.cityName;
     if (cityName && cityName !== '') {
         try {
-            const currentWeather = findCity(cityName)
+            const currentWeather = findCity(cityName);
             if (currentWeather && currentWeather[0]) {
-                const cityWeather = getWeatherWithAverage(currentWeather[0])
+                const cityWeather = getWeatherWithAverage(currentWeather[0]);
                 return {
                     statusCode: 200,
                     body: JSON.stringify(cityWeather)
@@ -23,11 +23,11 @@ export const getWeather: APIGatewayProxyHandler = async (_event: APIGatewayProxy
             return {
                 statusCode: 500,
                 body: 'Error' + JSON.stringify(error)
-            }
+            };
         }
     }
     return {
         statusCode: 500,
-        body: 'You need to provide a city'
-    }
+        body: 'You need to provide a city name'
+    };
 }

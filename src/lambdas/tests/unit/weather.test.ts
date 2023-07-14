@@ -2,7 +2,7 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult, ClientContext, ClientConte
 import { getWeather } from "../../weather";
 import { context, proxyResult } from "../utils/weatherConsts";
 
-describe('Unit test for getWeather function', function () {
+describe('Unit test for getWeather function', () => {
     it('should verifies successful response when city exists', async () => {
         const event: APIGatewayProxyEvent = {
             pathParameters: {
