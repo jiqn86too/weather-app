@@ -6,6 +6,10 @@ A very simple API with one endpoint to retrieve a JSON object with all weather i
 
 The project is based in a code architechture that uses a SAM template with OpenAPI validation to deploy a Lambda function and an API Gateway to AWS. This deployment process is triggered with Github Actions on every commit to main branch.
 
+### Flow Diagram
+
+![(./src/assets/flowDiagram.jpeg)]
+
 ## Inside the project we will find:
 
 - ```template.yaml``` The file that contains all the cloudformation structure.
