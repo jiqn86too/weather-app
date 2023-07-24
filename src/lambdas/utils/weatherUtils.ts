@@ -2,15 +2,14 @@ import { City } from './interfaces/city';
 import { cities } from './data/cities';
 
 export const getWeatherWithAverage = (city: City) => {
-    let averageTemp = 0;
-    let counter = 0;
     const daysArray = Object.keys(city.forecast).map(dayName => dayName);
-    daysArray.map((day: string) => {
-        averageTemp += city.forecast[day].temperature;
-        counter++;
+    let averageTemp = daysArray
+        .map((day: string) => (city.forecast as any)[day].temperature)
+        .reduce((previousValue: number, currentValue: number) => {
+        return previousValue + currentValue;
     });
 
-    averageTemp = Math.floor(averageTemp / counter);
+    averageTemp = Math.floor(averageTemp / daysArray.length);
     return { ...city, averageTemp };
 };
 
