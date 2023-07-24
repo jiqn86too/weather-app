@@ -8,7 +8,8 @@ The project is based in a code architechture that uses a SAM template with OpenA
 
 ### Flow Diagram
 
-![imagen](https://github.com/jiqn86too/weather-app/assets/139267051/d1a87c70-7672-4f30-b368-db8be2051791)
+
+![Diagrama en blanco](https://github.com/jiqn86too/weather-app/assets/139267051/c1293b83-bd96-4ecd-a3ec-b24868f408a3)
 
 
 ## Inside the project we will find:
